@@ -14,7 +14,7 @@ class ClassesController extends Controller
     public function index()
     {
         $classes = Classes::all();
-        return ClassesResource::collection($classes);
+        return response()->json($classes);
     }
 
     /**

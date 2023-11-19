@@ -17,7 +17,7 @@ class SectionController extends Controller
         // return $class_id;
 
         $sections = Sections::where('class_id',$class_id)->get();
-        return SectionResource::collection($sections);
+        return response()->json($sections);
     }
 
     /**

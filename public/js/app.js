@@ -19899,88 +19899,53 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     var classes = (0,vue__WEBPACK_IMPORTED_MODULE_0__.ref)({});
     var sections = (0,vue__WEBPACK_IMPORTED_MODULE_0__.ref)({});
     var selectedClass = (0,vue__WEBPACK_IMPORTED_MODULE_0__.ref)('');
-    var fetchData = /*#__PURE__*/function () {
-      var _ref = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee() {
-        var classResponse;
+    var fetchData = function fetchData() {
+      axios__WEBPACK_IMPORTED_MODULE_1__["default"].get('/api/classes').then(function (response) {
+        return classes.value = response.data;
+      });
+    };
+    var fetchSections = /*#__PURE__*/function () {
+      var _ref = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee(classId) {
         return _regeneratorRuntime().wrap(function _callee$(_context) {
           while (1) switch (_context.prev = _context.next) {
             case 0:
-              _context.prev = 0;
-              _context.next = 3;
-              return axios__WEBPACK_IMPORTED_MODULE_1__["default"].get('/api/classes');
-            case 3:
-              classResponse = _context.sent;
-              classes.value = classResponse.data.data;
-              console.log('classResponse.data', classResponse.data);
-              console.log('classResponse.data.data', classResponse.data.data);
-              _context.next = 12;
-              break;
-            case 9:
-              _context.prev = 9;
-              _context.t0 = _context["catch"](0);
-              console.error('Error fetching classes:', _context.t0);
-            case 12:
+              axios__WEBPACK_IMPORTED_MODULE_1__["default"].get("/api/sections?class_id=".concat(classId)).then(function (response) {
+                return sections.value = response.data;
+              });
+            case 1:
             case "end":
               return _context.stop();
           }
-        }, _callee, null, [[0, 9]]);
-      }));
-      return function fetchData() {
-        return _ref.apply(this, arguments);
-      };
-    }();
-    var fetchSections = /*#__PURE__*/function () {
-      var _ref2 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee2(classId) {
-        var sectionResponse;
-        return _regeneratorRuntime().wrap(function _callee2$(_context2) {
-          while (1) switch (_context2.prev = _context2.next) {
-            case 0:
-              _context2.prev = 0;
-              _context2.next = 3;
-              return axios__WEBPACK_IMPORTED_MODULE_1__["default"].get("/api/sections?class_id=".concat(classId));
-            case 3:
-              sectionResponse = _context2.sent;
-              sections.value = sectionResponse.data.data;
-              _context2.next = 10;
-              break;
-            case 7:
-              _context2.prev = 7;
-              _context2.t0 = _context2["catch"](0);
-              console.error('Error fetching sections:', _context2.t0);
-            case 10:
-            case "end":
-              return _context2.stop();
-          }
-        }, _callee2, null, [[0, 7]]);
+        }, _callee);
       }));
       return function fetchSections(_x) {
-        return _ref2.apply(this, arguments);
+        return _ref.apply(this, arguments);
       };
     }();
     (0,vue__WEBPACK_IMPORTED_MODULE_0__.onMounted)(function () {
       fetchData();
     });
     (0,vue__WEBPACK_IMPORTED_MODULE_0__.watch)(selectedClass, /*#__PURE__*/function () {
-      var _ref3 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee3(newValue) {
-        return _regeneratorRuntime().wrap(function _callee3$(_context3) {
-          while (1) switch (_context3.prev = _context3.next) {
+      var _ref2 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee2(newValue) {
+        return _regeneratorRuntime().wrap(function _callee2$(_context2) {
+          while (1) switch (_context2.prev = _context2.next) {
             case 0:
               if (!newValue) {
-                _context3.next = 3;
+                _context2.next = 3;
                 break;
               }
-              _context3.next = 3;
+              _context2.next = 3;
               return fetchSections(newValue);
             case 3:
               ;
             case 4:
             case "end":
-              return _context3.stop();
+              return _context2.stop();
           }
-        }, _callee3);
+        }, _callee2);
       }));
       return function (_x2) {
-        return _ref3.apply(this, arguments);
+        return _ref2.apply(this, arguments);
       };
     }());
     return {
