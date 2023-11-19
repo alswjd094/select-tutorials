@@ -33,33 +33,33 @@ export default defineComponent({
         const selectedClass = ref('');
 
         const fetchData = async () => {
-      try {
-        const classResponse = await axios.get('/api/classes');
-        classes.value = classResponse.data.data;
-        console.log('classResponse.data', classResponse.data);
-        console.log('classResponse.data.data', classResponse.data.data);
-      } catch (error) {
-        console.error('Error fetching classes:', error);
-      }
-    };
+            try {
+                const classResponse = await axios.get('/api/classes');
+                classes.value = classResponse.data.data;
+                console.log('classResponse.data', classResponse.data);
+                console.log('classResponse.data.data', classResponse.data.data);
+            } catch (error) {
+                console.error('Error fetching classes:', error);
+            }
+        };
 
-    const fetchSections = async (classId) => {
-      try {
-        const sectionResponse = await axios.get(`/api/sections?class_id=${classId}`);
-        sections.value = sectionResponse.data.data;
-      } catch (error) {
-        console.error('Error fetching sections:', error);
-      }
-    };
+        const fetchSections = async (classId) => {
+            try {
+                const sectionResponse = await axios.get(`/api/sections?class_id=${classId}`);
+                sections.value = sectionResponse.data.data;
+            } catch (error) {
+                console.error('Error fetching sections:', error);
+            }
+        };
 
-    onMounted(() => {
-      fetchData();
-    });
+        onMounted(() => {
+            fetchData();
+        });
 
-    watch(selectedClass, async (newValue) => {
-      if (newValue) {
-        await fetchSections(newValue);
-      };
+        watch(selectedClass, async (newValue) => {
+            if (newValue) {
+                await fetchSections(newValue);
+            };
         });
         return {
             classes,
