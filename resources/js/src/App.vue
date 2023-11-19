@@ -6,6 +6,8 @@
         />
         <br>
         <h1>Selected option: {{ parentSelectedOption }}</h1>
+    
+    
     </div>
 </template>
 
