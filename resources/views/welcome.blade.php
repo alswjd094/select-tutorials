@@ -6,7 +6,8 @@
         <title>라라벨과 뷰 연동하기</title>
     </head>
     <body>
-        <div id="app"></div>
+        <div id="app">
+        </div>
     </body>
 		<!-- public 경로 -->
     <script src="{{asset('./js/app.js')}}"></script>
